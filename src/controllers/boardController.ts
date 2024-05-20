@@ -7,19 +7,16 @@ export const createBoard = async (req: Request, res: Response) => {
     const savedBoard = await board.save();
     res.status(201).json({ id: savedBoard._id });
   } catch (error) {
-    res.status(400).json({ error});
+    res.status(400).json({ error });
   }
 };
 
 export const getBoardById = async (req: Request, res: Response) => {
   try {
     const board = await Board.findById(req.params.id);
-    if (!board) {
-      return res.status(404).json({ error: 'Board not found' });
-    }
     res.status(200).json(board);
   } catch (error) {
-    res.status(500).json({ error});
+    res.status(404).json({ error: 'Board not found' });
   }
 };
 
@@ -31,7 +28,7 @@ export const updateBoard = async (req: Request, res: Response) => {
     }
     res.status(200).json(updatedBoard);
   } catch (error) {
-    res.status(500).json({ error});
+    res.status(500).json({ error });
   }
 };
 
@@ -41,8 +38,8 @@ export const deleteBoard = async (req: Request, res: Response) => {
     if (!deletedBoard) {
       return res.status(404).json({ error: 'Board not found' });
     }
-    res.status(200).json({ message: 'Board deleted' });
+    res.status(200).json({ id: req.params.id});
   } catch (error) {
-    res.status(500).json({ error});
+    res.status(500).json({ error });
   }
 };
