@@ -5,8 +5,7 @@ import boardRoutes from './routes/boardRoutes';
 
 const uri = "mongodb+srv://thebadpoint:yo89i5rkKttZs0yz@kanbanapi.r7guayz.mongodb.net/?retryWrites=true&w=majority&appName=KanbanAPI";
 const app = express();
-const port = 3000;
-
+const port = process.env.PORT || 3000;
 
 var cors = require('cors');
 app.use(cors());
